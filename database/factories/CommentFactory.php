@@ -17,7 +17,7 @@ class CommentFactory extends Factory
             //
             'author_id' => \App\Models\User::factory(),
             'recipe_id' => \App\Models\Recipe::factory(),
-            'content' => $this->faker->unique()->paragraph(),
+            'content' => $this->faker->unique()->paragraph(4),
 
         ];
     }

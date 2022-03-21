@@ -15,7 +15,7 @@
   <div class="top-bar">
     <div class="top-bar-left">
       <ul class="menu">
-        <li class="menu-text">Super Series</li>
+        <li class="menu-text">Menu</li>
         <li><a href="/">Home</a></li>
         <li><a href="/recettes">Recettes</a></li>
         <li><a href="/contact">Contact</a></li>
@@ -26,8 +26,8 @@
 
   <div class="callout large primary">
     <div class="text-center">
-      <h1>Series</h1>
-      <h2 class="subheader">Series Master</h2>
+      <h1>Vous avez faim?</h1>
+      <h2 class="subheader">Nous aussi</h2>
     </div>
   </div>
 

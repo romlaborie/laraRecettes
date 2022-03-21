@@ -13,15 +13,16 @@ class RecipeFactory extends Factory
      */
     public function definition()
     {
+        $title= $this->faker->word()." ".$this->faker->word()." ".$this->faker->word()." ".$this->faker->word();
         return [
             //
             'author_id'=>\App\Models\User::factory(),
-            'title' => $this->faker->title(),
-            'content' => $this->faker->unique()->paragraph(),
-            'ingredients' => $this->faker->unique()->paragraph(),
-            'url' => $this->faker->unique()->url(),
-            'tags' => $this->faker->unique()->sentence(),
-            'status' => $this->faker->unique()->word(),
+            'title' => $title,
+            'content' => $this->faker->unique()->paragraph(5),
+            'ingredients' => $this->faker->unique()->paragraph(7),
+            'url' => str_replace(' ', '_', $title),
+            'tags' => $this->faker->unique()->sentence(5),
+            'status' => $this->faker->word()." ".$this->faker->word(),
 
         ];
     }
