@@ -25,3 +25,4 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/recettes', [RecipeController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
+Route::get('/recettes/{url}',[RecipeController::class, 'show']);

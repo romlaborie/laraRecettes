@@ -46,9 +46,13 @@ class RecipeController extends Controller
      * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function show(Recipe $recipe)
+    public function show($url)
     {
         //
+        $recipe = Recipe::where('url',$url)->first();
+        return view('recipes/single',array( //Pass the recipe to the view
+            'recipe' => $recipe
+        ));
     }
 
     /**
