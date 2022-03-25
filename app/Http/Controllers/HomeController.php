@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         //
-        $recipes = \App\Models\Recipe::all(); //get all recipes
+        $recipes = \App\Models\Recette::all(); //get all recipes
 
         return view('welcome', ['recipes'=>$recipes]);
     }

@@ -18,7 +18,8 @@
     @endfor
     <h2>Autres recettes accessibles par titre</h2>
     @for( $k=3; $k<count($recipes);$k++ )
-    <a href="recettes/{{$recipes[$k]->url}}"><li>{{ $recipes[$k]->title }}</li></a>
+    <a href="/admin/recettes/{{$recipes[$k]->url}}"><li>{{ $recipes[$k]->title }}</li></a>
+
     @endfor
 
 </ul>
