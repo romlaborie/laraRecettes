@@ -16,7 +16,9 @@ class ContactController extends Controller
     public function index()
     {
         //
-        return view('contactIndex');
+        $contacts = Contact::all();
+
+        return view('contactIndex', ['contacts' => $contacts]);
     }
 
     /**
@@ -27,6 +29,7 @@ class ContactController extends Controller
     public function create()
     {
         //
+        return view('contactIndex');
     }
 
     /**
@@ -38,6 +41,13 @@ class ContactController extends Controller
     public function store(StoreContactRequest $request)
     {
         //
+        $contact = new Contact(); //on instancie un nouveau projet
+        $contact->name = request('name'); //on set le titre avec la donnée envoyée du formulaire
+        $contact->email = request('email');
+        $contact->message = request('message');
+        $contact->save(); // on enregistre dans la base
+        // Comment::create(request(['title', 'description']));
+        return redirect('/contact');
     }
 
     /**

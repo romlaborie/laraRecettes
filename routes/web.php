@@ -20,9 +20,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RecipeController;
+
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/recettes', [RecipeController::class, 'index']);
-Route::get('/contact', [ContactController::class, 'index']);
-Route::get('/recettes/{url}',[RecipeController::class, 'show']);
+Route::get('/recettes/{url}', [RecipeController::class, 'show']);
+
+Route::resource('contact', ContactController::class);
+// Route::get('/contact', [ContactController::class, 'index']);
+// Route::post('/contact', [ContactController::class, 'store']);
