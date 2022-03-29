@@ -1,7 +1,7 @@
-@extends('layouts.main')
+@extends('recipes.single')
 @section('commentaire')
 <h1>Edition du comment</h1>
-<form method="POST" action="/admin/recettes/{{$recipe->url}}/comments/{{$comment->id}}">
+<form method="POST" action="/{{$recipe->url}}/comments/{{$comment->id}}">
     @method("PUT")
     @csrf
     <div>
@@ -12,7 +12,7 @@
     </div>
 </form>
 <h2>Suppression??</h2>
-<form method="POST" action="/admin/recettes/{{$recipe->url}}/comments/{{$comment->id}}">
+<form method="POST" action="/{{$recipe->url}}/comments/{{$comment->id}}">
     @method("DELETE")
     @csrf
     <div>

@@ -72,11 +72,11 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($url, Comment $comment) //on y passe autant de parametres que presents dans l'url dans le bon ordre
     {
         $recette = \App\Models\Recette::where('url', request('url'))->first();
-        $comment = Comment::where('recipe_id', $recette->id)->get();
-
+        // $comment=Comment::where('recipe_id', $recette->id)->get();
+        // print_r($comment);
         return view('commentaires.edition', array('comment' => $comment, 'recipe' => $recette));
     }
 
@@ -87,13 +87,13 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCommentRequest $request, Comment $comment)
+    public function update(UpdateCommentRequest $request, $url, Comment $comment)
     {
         //
         $comment->content = $request->content;
         $recette = \App\Models\Recette::where('url', request('url'))->first();
         $comment->save();
-        return view('commentaires.edition', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
+        return view('commentaires.create', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
     }
 
     /**
@@ -102,11 +102,12 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($url, Comment $comment)
     {
-        //
-        $comment->delete();
+
         $recette = \App\Models\Recette::where('url', request('url'))->first();
-        return view('commentaires.edition', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
+        $comment->destroy($comment->id);
+        return view('commentaires.create', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
     }
+
 }

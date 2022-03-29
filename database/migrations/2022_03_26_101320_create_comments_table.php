@@ -25,7 +25,7 @@ class CreateCommentsTable extends Migration
             ->onDelete('cascade');
             $table->foreign('recipe_id')
             ->references('id')
-            ->on('recipes')
+            ->on('recettes')
             ->onDelete('cascade');
         });
     }

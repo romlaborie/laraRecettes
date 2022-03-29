@@ -22,6 +22,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RecetteController;
 use App\Http\Controllers\CommentController;
+
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/home', [HomeController::class, 'index']);
@@ -32,5 +33,5 @@ Route::resource('contact', ContactController::class);
 // Route::get('/contact', [ContactController::class, 'index']);
 // Route::post('/contact', [ContactController::class, 'store']);
 
-Route::resource('/admin/recettes', RecetteController::class);
-Route::resource('/admin/recettes/{url}/comments', CommentController::class);
+Route::resource('/admin/recettes', RecetteController::class); //un peu restrictif les controllers resources
+Route::resource('/{url}/comments', CommentController::class);

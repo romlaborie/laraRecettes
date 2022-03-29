@@ -15,7 +15,7 @@
         <button type="submit">Suppr la recette</button>
     </div>
 </form>
-<form action="{{$recipe->url}}/comments/create">
+<form action="/{{$recipe->url}}/comments/create">
     @csrf
     <div>
         <button type="submit">Voir les commentaires et/ou commenter la recette</button>

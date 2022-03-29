@@ -5,11 +5,11 @@
     <h1>Je suis un commentaire : </h1>
     <p>{{$com->content}}</p>
 
-    <a href="/admin/recettes/{{$recipe->url}}/comments/{{$com->id}}/edit">Editer le commentaire</a>
+    <a href="/{{$recipe->url}}/comments/{{$com->id}}/edit">Editer le commentaire</a>
 
 <?php } ?>
 <h4>création du comment</h4>
-<form method="POST" action="/admin/recettes/{{$recipe->url}}/comments">
+<form method="POST" action="/{{$recipe->url}}/comments">
     @csrf
     <div>
         <textarea name="content" placeholder="contenu" cols="30" rows="10"></textarea>
