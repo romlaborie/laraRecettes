@@ -16,6 +16,8 @@ class CommentController extends Controller
     public function index()
     {
         //
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+        return view('commentaires.create', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
 
     }
 
@@ -28,8 +30,8 @@ class CommentController extends Controller
     {
         //
 
-        $recette=\App\Models\Recette::where('url', request('url'))->first();
-        return view('commentaires.create', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+        return view('commentaires.create', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
     }
 
     /**
@@ -41,13 +43,13 @@ class CommentController extends Controller
     public function store(StoreCommentRequest $request)
     {
         //
-        $comment=new Comment;
+        $comment = new Comment;
         $comment->content = $request->content;
-        $comment->author_id=rand(1, 5);
-        $recette=\App\Models\Recette::where('url', request('url'))->first();
-        $comment->recipe_id=$recette->id;
+        $comment->author_id = rand(1, 5);
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+        $comment->recipe_id = $recette->id;
         $comment->save();
-        return view('commentaires.create', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
+        return view('commentaires.create', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
     }
 
     /**
@@ -56,12 +58,12 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show()
     {
         //
-        $recette=\App\Models\Recette::where('url', request('url'))->first();
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
 
-        return view('commentaires.create', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
+        return view('commentaires.create', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
     }
 
     /**
@@ -70,13 +72,12 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit()
     {
-        //
-        $recette=\App\Models\Recette::where('url', request('url'))->first();
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+        $comment = Comment::where('recipe_id', $recette->id)->get();
 
-        return view('commentaires.edition', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
-
+        return view('commentaires.edition', array('comment' => $comment, 'recipe' => $recette));
     }
 
     /**
@@ -90,9 +91,9 @@ class CommentController extends Controller
     {
         //
         $comment->content = $request->content;
-        $recette=\App\Models\Recette::where('url', request('url'))->first();
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
         $comment->save();
-        return view('commentaires.edition', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
+        return view('commentaires.edition', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
     }
 
     /**
@@ -105,7 +106,7 @@ class CommentController extends Controller
     {
         //
         $comment->delete();
-        $recette=\App\Models\Recette::where('url', request('url'))->first();
-        return view('commentaires.edition', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+        return view('commentaires.edition', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
     }
 }
