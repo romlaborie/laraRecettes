@@ -13,4 +13,9 @@ class Recette extends Model
     {
         return $this->belongsTo(User::class,'author_id');
     }
+    public function commentaire()
+    {
+        return $this->hasMany(Comment::class,'recipe_id');
+    }
+
 }

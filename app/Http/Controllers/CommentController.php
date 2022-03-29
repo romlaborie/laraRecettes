@@ -27,6 +27,9 @@ class CommentController extends Controller
     public function create()
     {
         //
+
+        $recette=\App\Models\Recette::where('url', request('url'))->first();
+        return view('commentaires.create', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
     }
 
     /**
@@ -38,6 +41,13 @@ class CommentController extends Controller
     public function store(StoreCommentRequest $request)
     {
         //
+        $comment=new Comment;
+        $comment->content = $request->content;
+        $comment->author_id=rand(1, 5);
+        $recette=\App\Models\Recette::where('url', request('url'))->first();
+        $comment->recipe_id=$recette->id;
+        $comment->save();
+        return view('commentaires.create', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
     }
 
     /**
@@ -49,6 +59,9 @@ class CommentController extends Controller
     public function show(Comment $comment)
     {
         //
+        $recette=\App\Models\Recette::where('url', request('url'))->first();
+
+        return view('commentaires.create', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
     }
 
     /**
@@ -60,6 +73,10 @@ class CommentController extends Controller
     public function edit(Comment $comment)
     {
         //
+        $recette=\App\Models\Recette::where('url', request('url'))->first();
+
+        return view('commentaires.edition', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
+
     }
 
     /**
@@ -72,6 +89,10 @@ class CommentController extends Controller
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
         //
+        $comment->content = $request->content;
+        $recette=\App\Models\Recette::where('url', request('url'))->first();
+        $comment->save();
+        return view('commentaires.edition', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
     }
 
     /**
@@ -83,5 +104,8 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         //
+        $comment->delete();
+        $recette=\App\Models\Recette::where('url', request('url'))->first();
+        return view('commentaires.edition', array('comment'=>Comment::where('recipe_id', $recette->id)->get(), 'recipe'=>$recette));
     }
 }

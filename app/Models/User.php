@@ -51,4 +51,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Recette::class,'author_id');
     }
+    public function comment()
+    {
+        return $this->hasMany(Comment::class,'author_id');
+    }
 }

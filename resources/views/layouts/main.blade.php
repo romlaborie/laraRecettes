@@ -35,6 +35,7 @@
 
     @yield('content')
 
+
   </article>
 
 
