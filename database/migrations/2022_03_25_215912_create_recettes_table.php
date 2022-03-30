@@ -21,8 +21,7 @@ class CreateRecettesTable extends Migration
             $table->longText('ingredients');
             $table->text('url');
 
-            // $table->text('tags');
-            // $table->text('status');
+            $table->text('media');
             $table->timestamps();
             $table->foreign('author_id')
             ->references('id')

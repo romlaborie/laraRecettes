@@ -4,6 +4,7 @@
 @section('content')
 
 <h1>création de la recette</h1>
+{{-- pour creer lien image c'est ici --}}
 <form method="POST" action="/admin/recettes">
     @csrf
     <div>

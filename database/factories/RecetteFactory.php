@@ -21,7 +21,7 @@ class RecetteFactory extends Factory
             'content' => $this->faker->unique()->paragraph(5),
             'ingredients' => $this->faker->unique()->paragraph(7),
             'url' => str_replace(' ', '_', $title),
-            // 'tags' => $this->faker->unique()->sentence(5),
+            'media' => 'aiguillesQuiPiquent.jpg'
             // 'status' => $this->faker->word()." ".$this->faker->word(),
 
         ];
