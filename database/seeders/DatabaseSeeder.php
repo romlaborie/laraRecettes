@@ -14,8 +14,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create()
-        \App\Models\User::factory(5)->has(\App\Models\Recette::factory(5))->has(\App\Models\Comment::factory(5))->create();
-        \App\Models\Ingredient::factory(20)->has(\App\Models\Ingredients_recette::factory(3))->create();
-        \App\Models\Recette::factory()->count(20)->has(\App\Models\Ingredients_recette::factory()->count(3))->create();
+        $tab_recettes=\App\Models\Recette::factory(5)->create();
+        $tab_comment=\App\Models\Comment::factory(5)->create();
+        $tab_ingredient=\App\Models\Ingredient::factory(5)->create();
+        foreach($tab_ingredient as $ingredient){
+            $k=rand(0,count($tab_recettes));
+            for($p=0; $p<$k; $p++){
+
+                $ingredient->Recette()->attach($tab_recettes[$p]);
+            }
+        }
     }
 }

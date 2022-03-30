@@ -18,9 +18,9 @@ class Recette extends Model
         return $this->hasMany(Comment::class,'recipe_id');
     }
 
-    public function ingredientsRecette()
+    public function Ingredients()
     {
-        return $this->belongsTo(Ingredients_recette::class,'ingredient_id');
+        return $this->belongsToMany(Ingredients::class);
     }
 
 }
