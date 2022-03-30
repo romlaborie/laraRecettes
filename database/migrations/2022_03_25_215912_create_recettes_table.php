@@ -18,7 +18,6 @@ class CreateRecettesTable extends Migration
             $table->unsignedBigInteger('author_id');
             $table->mediumText('title');
             $table->longText('content');
-            $table->longText('ingredients');
             $table->text('url');
 
             $table->text('media');

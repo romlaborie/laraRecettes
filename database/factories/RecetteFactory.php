@@ -19,7 +19,6 @@ class RecetteFactory extends Factory
             'author_id'=>\App\Models\User::factory(),
             'title' => $title,
             'content' => $this->faker->unique()->paragraph(5),
-            'ingredients' => $this->faker->unique()->paragraph(7),
             'url' => str_replace(' ', '_', $title),
             'media' => 'aiguillesQuiPiquent.jpg'
             // 'status' => $this->faker->word()." ".$this->faker->word(),

@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CommentFactory extends Factory
+class IngredientFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,10 +15,8 @@ class CommentFactory extends Factory
     {
         return [
             //
-            'author_id' => \App\Models\User::factory(),
-            'recipe_id' => \App\Models\Recette::factory(),
-            'content' => $this->faker->unique()->paragraph(4),
-
+            'nom_ingredient'=> $this->faker->word()." ".$this->faker->word()." ".$this->faker->word()." ".$this->faker->word(),
+            'quantiteParPersonne'=>$this->faker->numberBetween(1, 500),
         ];
     }
 }

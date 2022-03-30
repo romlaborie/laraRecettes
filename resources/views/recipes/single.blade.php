@@ -8,6 +8,7 @@
 <h3>Auteur</h3>
   <p>{{$recipe->author->name}}</p>
 <img src='/storage/images/{{$recipe->media}}' alt="imagetest">
+<a href="/admin/recettes/{{$recipe->id}}/edit">Edit la recette</a>
 <form method="POST" action="/admin/recettes/{{$recipe->id}}">
     @method("DELETE")
     @csrf
