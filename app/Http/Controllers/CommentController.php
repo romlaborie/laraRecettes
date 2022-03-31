@@ -75,8 +75,6 @@ class CommentController extends Controller
     public function edit($url, Comment $comment) //on y passe autant de parametres que presents dans l'url dans le bon ordre
     {
         $recette = \App\Models\Recette::where('url', request('url'))->first();
-        // $comment=Comment::where('recipe_id', $recette->id)->get();
-        // print_r($comment);
         return view('commentaires.edition', array('comment' => $comment, 'recipe' => $recette));
     }
 
@@ -106,7 +104,7 @@ class CommentController extends Controller
     {
 
         $recette = \App\Models\Recette::where('url', request('url'))->first();
-        $comment->destroy($comment->id);
+        $comment->delete();
         return view('commentaires.create', array('comment' => Comment::where('recipe_id', $recette->id)->get(), 'recipe' => $recette));
     }
 

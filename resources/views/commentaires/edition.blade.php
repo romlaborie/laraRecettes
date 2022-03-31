@@ -11,7 +11,7 @@
         <button type="submit">Editer</button>
     </div>
 </form>
-<h2>Suppression??</h2>
+<h4>Suppression??</h4>
 <form method="POST" action="/{{$recipe->url}}/comments/{{$comment->id}}">
     @method("DELETE")
     @csrf

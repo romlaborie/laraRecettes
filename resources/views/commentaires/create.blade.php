@@ -2,7 +2,7 @@
 @section('commentaire')
 <h3>Commentaire</h3>
 <?php foreach($comment as $com){?>
-    <h1>Je suis un commentaire : </h1>
+    <h4>Je suis un commentaire : </h4>
     <p>{{$com->content}}</p>
 
     <a href="/{{$recipe->url}}/comments/{{$com->id}}/edit">Editer le commentaire</a>

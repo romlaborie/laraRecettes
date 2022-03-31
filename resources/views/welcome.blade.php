@@ -6,11 +6,7 @@
 
     @for( $k=0; $k<3;$k++)
       <li>
-          <h2>{{ $recipes[$k]->title }}</h2>
-        <h3>Liste des ingrédients</h3>
-        <p>
-          {{$recipes[$k]->ingredients}}
-        </p>
+        <a href="/admin/recettes/{{$recipes[$k]->url}}">{{ $recipes[$k]->title }}</a>
         <h3>Recette détaillée:</h3>
         <p>{{$recipes[$k]->content}}</p>
 

@@ -20,7 +20,7 @@ class Recette extends Model
 
     public function Ingredients()
     {
-        return $this->belongsToMany(Ingredients::class);
+        return $this->belongsToMany(Ingredient::class);
     }
 
 }

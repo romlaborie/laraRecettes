@@ -2,7 +2,13 @@
 @section('content')
 <h2>{{ $recipe->title }}</h2>
 <h3>Liste des ingrédients</h3>
-  <p>{{$recipe->ingredients}}</p>
+  <form action="/{{$recipe->url}}/ingredients/create">
+    @csrf
+    <div>
+        <button type="submit">Voir les ingredients et/ou ajouter un ingredient</button>
+    </div>
+  </form>
+  @yield('ingredients')
 <h3>Recette détaillée</h3>
   <p>{{$recipe->content}}</p>
 <h3>Auteur</h3>

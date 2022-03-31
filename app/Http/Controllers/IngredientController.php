@@ -16,6 +16,8 @@ class IngredientController extends Controller
     public function index()
     {
         //
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+        return view('ingredients.create', array('ingredients' =>$recette->Ingredients, 'recipe' => $recette));
     }
 
     /**
@@ -26,6 +28,9 @@ class IngredientController extends Controller
     public function create()
     {
         //
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+
+        return view('ingredients.create', array('ingredients' =>$recette->Ingredients, 'recipe' => $recette));
     }
 
     /**
@@ -37,6 +42,15 @@ class IngredientController extends Controller
     public function store(StoreIngredientRequest $request)
     {
         //
+        $ingredient = new Ingredient;
+        $ingredient->nom_ingredient = $request->nom_ingredient;
+        $ingredient->quantiteParPersonne = $request->quantiteParPersonne;
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+        $recette->Ingredients[]=$ingredient;
+        $ingredient->Recette[]=$recette;
+        $ingredient->save();
+        $recette->save();
+        return view('ingredients.create', array('ingredients' => $recette->Ingredients, 'recipe' => $recette));
     }
 
     /**
@@ -45,9 +59,11 @@ class IngredientController extends Controller
      * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function show(Ingredient $ingredient)
+    public function show($url, Ingredient $ingredient)
     {
         //
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+        return view('ingredients.create', array('ingredients' =>$recette->Ingredients, 'recipe' => $recette));
     }
 
     /**
@@ -56,9 +72,11 @@ class IngredientController extends Controller
      * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ingredient $ingredient)
+    public function edit($url, Ingredient $ingredient)
     {
         //
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+        return view('ingredients.edition', array('ing' => $ingredient, 'recipe' => $recette));
     }
 
     /**
@@ -68,9 +86,14 @@ class IngredientController extends Controller
      * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateIngredientRequest $request, Ingredient $ingredient)
+    public function update(UpdateIngredientRequest $request, $url, Ingredient $ingredient)
     {
         //
+        $ingredient->nom_ingredient = $request->nom_ingredient;
+        $ingredient->quantiteParPersonne = $request->quantiteParPersonne;
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+        $ingredient->save();
+        return view('ingredients.create', array('ingredients' => $recette->Ingredients, 'recipe' => $recette));
     }
 
     /**
@@ -79,8 +102,12 @@ class IngredientController extends Controller
      * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ingredient $ingredient)
+    public function destroy($url, Ingredient $ingredient)
     {
         //
+        $recette = \App\Models\Recette::where('url', request('url'))->first();
+
+        $ingredient->delete();
+        return view('ingredients.create', array('ingredients' => $recette->Ingredients, 'recipe' => $recette));
     }
 }
