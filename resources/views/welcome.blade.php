@@ -12,6 +12,7 @@
 
     </li>
     @endfor
+    <h1 style="color:red;">La quantité par personne dépend de la recette : à mettre dans la table jointure recette_ingredient</h1>
     <h2>Autres recettes accessibles par titre</h2>
     @for( $k=3; $k<count($recipes);$k++ )
     <a href="/admin/recettes/{{$recipes[$k]->url}}"><li>{{ $recipes[$k]->title }}</li></a>
